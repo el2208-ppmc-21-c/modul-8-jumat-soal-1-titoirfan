@@ -98,7 +98,10 @@ int count(struct Node* head){//fungsi untuk menghitung banyak data pada stack
 
 void ishamiltonpath(int NODE,int graph[NODE][NODE], struct Node* travel, int visit[NODE]){
     struct Node* path = NULL;
-    struct Node* current = NULL;
+    struct Node* current = (struct Node*) malloc(sizeof(struct Node));
+    current->data = 0;
+    current->next = NULL;
+    
     int i=0;
 
     push(&path,0);
