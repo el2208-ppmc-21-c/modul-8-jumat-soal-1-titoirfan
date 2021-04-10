@@ -1,11 +1,11 @@
 /*EL2208 Praktikum Pemecahan Masalah dengan C 2020/2021
 *Modul            : 8
 *Percobaan        : -
-*Hari dan Tanggal : -
+*Hari dan Tanggal : Minggu, 4 April 2021
 *Nama (NIM)       : -
-*Asisten (NIM)    : -
+*Asisten (NIM)    : Dismas Widyanto (13218065)
 *Nama File        : -
-*Deskripsi        : -
+*Deskripsi        : Program untuk mencari hamilton path pada suatu graph
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ struct Node{//tipe data node
     struct Node *next;
 };
 
-void getvertex(int *vertex,FILE* fp){//fungsi untuk mengambil banyak vertex pada file
+void getvertex(int  *vertex,FILE* fp){//fungsi untuk mengambil banyak vertex pada file
     char temp[10];
     int baris;
 
@@ -46,28 +46,109 @@ void generatematriks(int vertex, int matriks[vertex][vertex], FILE* fp){//fungsi
 
 }
 
+void push(struct Node** head,int data){// fungsi push
+    struct Node* newnode=(struct Node*)malloc(sizeof(struct Node));
+
+    newnode->data=data;
+    newnode->next=*head;
+
+    *head=newnode;
+}
+
+void pop(struct Node** head){// fungsi pop
+    struct Node* temp;
+
+    if(*head==NULL){
+        return;
+    }
+    else{
+        temp=*head;
+        temp=temp->next;
+        free(*head);
+        *head=temp;
+    }
+}
+
+void enqueue(struct Node** head, int data){// fungsi enqueue
+    struct Node* newnode=(struct Node*)malloc(sizeof(struct Node));
+
+    struct Node* temp=*head;//data baru
+    newnode->data=data;
+    newnode->next=NULL;
+
+    if(*head == NULL){
+        *head=newnode;
+        return;
+    }
+    while(temp->next!= NULL){//traverse
+        temp=temp->next;
+    }
+    temp->next=newnode;//tambahkan data baru ke queue
+}
+
+int count(struct Node* head){//fungsi untuk menghitung banyak data pada stack
+    struct Node* temp=head;
+    int jumlah=0;
+    while(temp!=NULL){//traverse
+        temp=temp->next;
+        jumlah+=1;
+    }
+    return jumlah;//banyak data
+}
 
 void ishamiltonpath(int NODE,int graph[NODE][NODE], struct Node* travel, int visit[NODE]){
-    //isi dengan kode anda
+    struct Node* path;
+    struct Node* current;
+    int i=0;
+
+    push(&path,0);
+
+    while(path!=NULL){
+        current->data=path->data;
+        pop(&path);
+        enqueue(&travel,current->data);
+        visit[current->data]=1;
+
+
+        if(count(travel)==NODE){
+            while(travel!=NULL){
+                printf("%d ",travel->data);
+                travel=travel->next;
+            }
+        }
+
+        for(int i=NODE-1;i>=0;i--){
+            if(graph[current->data][i]==1 && visit[i]!=1){
+                push(&path,i);
+            }
+        }
+    }
 }
 
 int main(){
+    int NODE;
+    struct Node* hamiltonpath=NULL;
     char filename [10];
+
     FILE *fp;
 
-    printf("Masukkan nama file : ");//input nama file
+    printf("Masukkan nama file : ");
 	gets(filename);
 	fp = fopen( filename, "r");
 
-    getvertex(&NODE,fp);//ambil jumlah bertex
+    getvertex(&NODE,fp);
 
     int graph[NODE][NODE];
+    int visit[NODE], sol[NODE];
+    for(int i=0;i<NODE;i++){
+        visit[i]=0;
+    }
 
-    generatematriks(NODE, graph, fp);//buat matriks
+    generatematriks(NODE, graph, fp);
 
     fclose(fp);
 
     printf("Hamilton Path: ");
-    ishamiltonpath(...);
+    ishamiltonpath(NODE,graph,hamiltonpath,visit);
     return 0;
 }
