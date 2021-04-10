@@ -140,11 +140,11 @@ int main(){
 	
     int graph[NODE][NODE];
     int visit[NODE], sol[NODE];
-//     for(int i=0;i<NODE;i++){
-//         visit[i]=0;
-//     }
+    for(int i=0;i<NODE;i++){
+        visit[i]=0;
+    }
 
-//     generatematriks(NODE, graph, fp);
+    generatematriks(NODE, graph, fp);
 
 //     fclose(fp);
 
