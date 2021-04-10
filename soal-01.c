@@ -128,12 +128,12 @@ void ishamiltonpath(int NODE,int graph[NODE][NODE], struct Node* travel, int vis
 int main(){
     int NODE;
     struct Node* hamiltonpath=NULL;
-    char filename [10];
+    char filename [20];
 
     FILE *fp;
 
     printf("Masukkan nama file : ");
-	gets(filename);
+	scanf("%s", filename);
 	fp = fopen( filename, "r");
 
     getvertex(&NODE,fp);
