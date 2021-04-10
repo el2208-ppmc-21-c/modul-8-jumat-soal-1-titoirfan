@@ -97,8 +97,8 @@ int count(struct Node* head){//fungsi untuk menghitung banyak data pada stack
 }
 
 void ishamiltonpath(int NODE,int graph[NODE][NODE], struct Node* travel, int visit[NODE]){
-    struct Node* path;
-    struct Node* current;
+    struct Node* path = NULL;
+    struct Node* current = NULL;
     int i=0;
 
     push(&path,0);
@@ -146,9 +146,9 @@ int main(){
 
     generatematriks(NODE, graph, fp);
 
-//     fclose(fp);
+    fclose(fp);
 
-//     printf("Hamilton Path: ");
-//     ishamiltonpath(NODE,graph,hamiltonpath,visit);
+    printf("Hamilton Path: ");
+    ishamiltonpath(NODE,graph,hamiltonpath,visit);
     return 0;
 }
