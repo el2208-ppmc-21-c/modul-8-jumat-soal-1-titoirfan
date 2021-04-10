@@ -135,20 +135,21 @@ int main(){
     printf("Masukkan nama file : ");
 	scanf("%s", filename);
 	fp = fopen( filename, "r");
+	
+	printf("Filename: %s\n", filename);
+//     getvertex(&NODE,fp);
 
-    getvertex(&NODE,fp);
+//     int graph[NODE][NODE];
+//     int visit[NODE], sol[NODE];
+//     for(int i=0;i<NODE;i++){
+//         visit[i]=0;
+//     }
 
-    int graph[NODE][NODE];
-    int visit[NODE], sol[NODE];
-    for(int i=0;i<NODE;i++){
-        visit[i]=0;
-    }
+//     generatematriks(NODE, graph, fp);
 
-    generatematriks(NODE, graph, fp);
+//     fclose(fp);
 
-    fclose(fp);
-
-    printf("Hamilton Path: ");
-    ishamiltonpath(NODE,graph,hamiltonpath,visit);
+//     printf("Hamilton Path: ");
+//     ishamiltonpath(NODE,graph,hamiltonpath,visit);
     return 0;
 }
