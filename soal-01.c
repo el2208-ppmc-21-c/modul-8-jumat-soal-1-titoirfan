@@ -137,9 +137,9 @@ int main(){
 	fp = fopen( filename, "r");
 	
     getvertex(&NODE,fp);
-	printf("Node: %d", NODE);
-//     int graph[NODE][NODE];
-//     int visit[NODE], sol[NODE];
+	
+    int graph[NODE][NODE];
+    int visit[NODE], sol[NODE];
 //     for(int i=0;i<NODE;i++){
 //         visit[i]=0;
 //     }
